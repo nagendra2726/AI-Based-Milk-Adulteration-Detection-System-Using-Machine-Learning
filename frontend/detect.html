@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Analyzer | MilkPure AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .recommendation-card { margin-top: 1.5rem; padding: 1.5rem; background: rgba(0, 242, 255, 0.05); border: 1px dashed var(--primary-glow); border-radius: 16px; text-align: left; }
+        .recommendation-card h5 { color: var(--primary); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 8px; }
+        .recommendation-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="hero-bg-effects">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/home" class="logo">
+                <div class="logo-icon"><i class="fas fa-microscope"></i></div>
+                <span>MilkPure<span class="logo-ai">AI</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/home" class="nav-link">Home</a></li>
+                <li><a href="/detect" class="nav-link active">Analysis</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/analytics" class="nav-link">Analytics</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle"><i class="fas fa-adjust"></i></button>
+                <a href="/" class="login-btn"><i class="fas fa-power-off"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="section-header">
+            <span class="section-tag">🔬 S-Grade Industrial Analyzer</span>
+            <h2>Scientific <span class="gradient-text">Milk Assessment</span></h2>
+            <p>High-precision assessment using Rule-Based Scrutiny & Random Forest Intelligence.</p>
+        </div>
+
+        <div class="detect-grid">
+            <div class="glass-card input-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-vial"></i> Sensor Telemetry</h3>
+                    <button class="chip-btn" id="randomizeBtn"><i class="fas fa-sync-alt"></i> Calibrate</button>
+                </div>
+                <form id="detectForm">
+                    <div class="slider-group">
+                        <div class="slider-header"><span>Hydrogen-ion Potential (pH)</span><span id="phVal">6.6</span></div>
+                        <input type="range" id="ph" min="0" max="14" step="0.1" value="6.6">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>Lipid Content (Fat %)</span><span id="fatVal">4.5</span></div>
+                        <input type="range" id="fat" min="0" max="12" step="0.1" value="4.5">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>Lactometer Reading (LR)</span><span id="lactometerVal">29</span></div>
+                        <input type="range" id="lactometer" min="10" max="45" step="1" value="29">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>Relative Density (g/cm³)</span><span id="densityVal">1.030</span></div>
+                        <input type="range" id="density" min="1.010" max="1.045" step="0.001" value="1.030">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>Electrical Conductivity (mS/cm)</span><span id="conductivityVal">5.0</span></div>
+                        <input type="range" id="conductivity" min="0" max="18" step="0.1" value="5.0">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>Solids-Not-Fat (SNF %)</span><span id="snfVal">8.5</span></div>
+                        <input type="range" id="snf" min="0" max="15" step="0.1" value="8.5">
+                    </div>
+                    <input type="hidden" id="temp" value="25.0">
+                    <button type="submit" class="btn-glow full-w">Execute Analytical Run</button>
+                </form>
+            </div>
+
+            <div class="glass-card result-card" id="resultCard">
+                <div class="result-state hidden" id="loadingState">
+                    <div class="spinner"></div>
+                    <h3>Processing Sample...</h3>
+                    <p>Running Rule-Based & Random Forest validation.</p>
+                </div>
+                <div class="result-state" id="placeholderState">
+                    <i class="fas fa-shield-virus" style="font-size: 3.5rem; color: var(--primary); opacity: 0.5; margin-bottom: 1.5rem;"></i>
+                    <h3>Awaiting Sample</h3>
+                    <p>Adjust telemetry sliders to begin the high-precision assessment.</p>
+                </div>
+                <div class="result-ready hidden" id="resultState">
+                    <div class="result-top">
+                        <div class="gauge-wrapper">
+                            <svg class="gauge-svg" viewBox="0 0 120 120">
+                                <circle class="gauge-bg" cx="60" cy="60" r="52"></circle>
+                                <circle class="gauge-fill" id="gaugeFill" cx="60" cy="60" r="52"></circle>
+                            </svg>
+                            <div class="gauge-center">
+                                <span class="gauge-val" id="purityVal">0</span>
+                                <span class="gauge-unit">Purity %</span>
+                            </div>
+                        </div>
+                        <div class="result-meta">
+                            <div class="status-pill" id="statusPill">Assessing...</div>
+                            <h4 id="resAdulterant">-</h4>
+                            <p id="resRisk">-</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-card" id="recPanel">
+                        <h5>AI Recommendation</h5>
+                        <p id="resRecommendation">-</p>
+                    </div>
+                    <div class="result-actions">
+                        <button class="action-btn" id="voiceBtn"><i class="fas fa-wave-square"></i> Voice</button>
+                        <button class="action-btn" id="downloadPdf"><i class="fas fa-file-invoice"></i> PDF Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast"><span id="toastMsg"></span></div>
+    <script src="script.js"></script>
+</body>
+</html>

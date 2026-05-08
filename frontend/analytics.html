@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics | MilkPure AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="hero-bg-effects">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/home" class="logo">
+                <div class="logo-icon"><i class="fas fa-flask"></i></div>
+                <span>MilkPure<span class="logo-ai">AI</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/home" class="nav-link">Home</a></li>
+                <li><a href="/detect" class="nav-link">Detection</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/analytics" class="nav-link active">Analytics</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="/" class="login-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="section-header">
+            <span class="section-tag">📊 Intelligence</span>
+            <h2>Market <span class="gradient-text">Analytics</span></h2>
+            <p>Big data analysis of milk adulteration patterns and statistics.</p>
+        </div>
+
+        <div class="analytics-grid">
+            <div class="glass-card">
+                <h3>Adulterant Distribution</h3>
+                <canvas id="distChart"></canvas>
+            </div>
+            <div class="glass-card">
+                <h3>Composition Ratio</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="glass-card chart-wide">
+                <h3>Parameter Correlation</h3>
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | MilkPure AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="hero-bg-effects">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/home" class="logo">
+                <div class="logo-icon"><i class="fas fa-flask"></i></div>
+                <span>MilkPure<span class="logo-ai">AI</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/home" class="nav-link">Home</a></li>
+                <li><a href="/detect" class="nav-link">Detection</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/analytics" class="nav-link">Analytics</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/contact" class="nav-link active">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="/" class="login-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="section-header">
+            <span class="section-tag">📩 Get in Touch</span>
+            <h2>Contact <span class="gradient-text">Support</span></h2>
+            <p>Reach out to our engineering team for inquiries or feedback.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="glass-card contact-form-card">
+                <form id="contactForm">
+                    <div class="form-field"><i class="fas fa-user"></i><input type="text" placeholder="Name" required>
+                    </div>
+                    <div class="form-field"><i class="fas fa-envelope"></i><input type="email" placeholder="Email"
+                            required></div>
+                    <div class="form-field textarea-field"><i class="fas fa-comment"></i><textarea placeholder="Message"
+                            rows="5" required></textarea></div>
+                    <button type="submit" class="btn-glow full-w">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info-col">
+                <div class="glass-card contact-info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Us</h4>
+                    <p>lakshmikavya1410@gmail.com</p>
+                </div>
+                <div class="glass-card contact-info-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>Call Us</h4>
+                    <p>+91 8639127198</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast"><span id="toastMsg"></span></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

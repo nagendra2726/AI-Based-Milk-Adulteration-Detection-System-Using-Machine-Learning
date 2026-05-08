@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MilkPure AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-page">
+    <div class="hero-bg-effects">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="login-container">
+        <div class="glass-card login-card">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-flask"></i></div>
+                <span>MilkPure<span class="logo-ai">AI</span></span>
+            </div>
+            <h2>Welcome Back</h2>
+            <p>Please sign in to access the detection system</p>
+
+            <form id="mainLoginForm">
+                <div class="form-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-glow full-w">Sign In</button>
+            </form>
+
+            <div class="login-footer">
+                <p>Demo Login: <code>admin@milkpure.ai</code> / <code>password</code></p>
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Success!</span>
+    </div>
+
+    <script>
+        document.getElementById('mainLoginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+
+            toastMsg.textContent = "Logging in...";
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                window.location.href = '/home';
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

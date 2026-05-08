@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/app.py"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/frontend/style.css"
+    },
+    {
+      "src": "/script.js",
+      "dest": "/frontend/script.js"
+    },
+    {
+      "src": "/home",
+      "dest": "/frontend/home.html"
+    },
+    {
+      "src": "/detect",
+      "dest": "/frontend/detect.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/frontend/dashboard.html"
+    },
+    {
+      "src": "/analytics",
+      "dest": "/frontend/analytics.html"
+    },
+    {
+      "src": "/about",
+      "dest": "/frontend/about.html"
+    },
+    {
+      "src": "/contact",
+      "dest": "/frontend/contact.html"
+    },
+    {
+      "src": "/",
+      "dest": "/frontend/login.html"
+    }
+  ]
+}

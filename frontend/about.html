@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | MilkPure AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero-bg-effects">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/home" class="logo">
+                <div class="logo-icon"><i class="fas fa-flask"></i></div>
+                <span>MilkPure<span class="logo-ai">AI</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/home" class="nav-link">Home</a></li>
+                <li><a href="/detect" class="nav-link">Detection</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/analytics" class="nav-link">Analytics</a></li>
+                <li><a href="/about" class="nav-link active">About</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="/" class="login-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="section-header">
+            <span class="section-tag">💡 Our Mission</span>
+            <h2>About the <span class="gradient-text">Project</span></h2>
+            <p>Empowering consumers with AI to ensure food safety and quality.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="glass-card about-main">
+                <h3>The Challenge</h3>
+                <p>Milk adulteration is a significant health risk globally. From simple water dilution to dangerous chemicals like urea and detergent, identifying these impurities requires sophisticated equipment.</p>
+                <h3>Our Solution</h3>
+                <p>MilkPure AI leverages machine learning to analyze physical and chemical properties of milk samples, providing an instant safety score and adulterant identification.</p>
+                <div class="tech-tags">
+                    <span>Python</span><span>Flask</span><span>Scikit-learn</span><span>IoT</span>
+                </div>
+            </div>
+            <div class="features-col">
+                <div class="glass-card feature-card">
+                    <i class="fas fa-microchip"></i>
+                    <div><h4>AI Prediction</h4><p>High-accuracy Random Forest models for precise detection.</p></div>
+                </div>
+                <div class="glass-card feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <div><h4>Public Health</h4><p>Protecting children and families from toxic synthetic milk.</p></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

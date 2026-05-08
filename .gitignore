@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+backend/model.pkl
+backend/scaler.pkl
+backend/dataset.csv
+.venv/
+env/
+venv/
+node_modules/
+.vscode/
+.idea/

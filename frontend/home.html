@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | MilkPure AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/home" class="logo">
+                <div class="logo-icon"><i class="fas fa-flask"></i></div>
+                <span>MilkPure<span class="logo-ai">AI</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/home" class="nav-link active">Home</a></li>
+                <li><a href="/detect" class="nav-link">Detection</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/analytics" class="nav-link">Analytics</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="/" class="login-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg-effects">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="grid-lines"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge">🔬 Advanced Quality Assurance</div>
+                <h1>Ensuring Every<br><span class="gradient-text">Drop is Pure</span></h1>
+                <p class="hero-desc">The next generation of milk adulteration detection using real-time IoT data and high-performance Machine Learning.</p>
+                <div class="hero-buttons">
+                    <a href="/detect" class="btn-glow"><i class="fas fa-microscope"></i> Start Detection</a>
+                    <a href="/about" class="btn-outline">How it Works</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="h-stat"><span class="h-stat-num">99</span><span class="h-stat-suffix">%</span><span class="h-stat-label">Accuracy</span></div>
+                    <div class="h-stat-divider"></div>
+                    <div class="h-stat"><span class="h-stat-num">7</span><span class="h-stat-suffix">+</span><span class="h-stat-label">Adulterants</span></div>
+                    <div class="h-stat-divider"></div>
+                    <div class="h-stat"><span class="h-stat-num">2</span><span class="h-stat-suffix">s</span><span class="h-stat-label">Process Time</span></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="molecule-container">
+                    <div class="molecule-ring ring-1"></div>
+                    <div class="molecule-ring ring-2"></div>
+                    <div class="molecule-ring ring-3"></div>
+                    <div class="molecule-core">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

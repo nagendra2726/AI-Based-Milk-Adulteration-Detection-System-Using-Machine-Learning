@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MilkPure AI — Advanced Milk Adulteration Detection System</title>
+    <meta name="description" content="AI-powered milk quality detection using machine learning and real-time sensor simulation.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon"><i class="fas fa-flask"></i></div>
+                <span>MilkPure<span class="logo-ai">AI</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#detect" class="nav-link" data-section="detect">Detection</a></li>
+                <li><a href="#dashboard" class="nav-link" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#analytics" class="nav-link" data-section="analytics">Analytics</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="login-btn" id="loginBtn">
+                    <i class="fas fa-user"></i> Login
+                </button>
+                <button class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════ LOGIN MODAL ═══════════ -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal glass-card">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2>Welcome Back</h2>
+            <p class="modal-sub">Login to access test history & reports</p>
+            <form id="loginForm">
+                <div class="form-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email address" required>
+                </div>
+                <div class="form-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-glow full-w">Sign In</button>
+                <p class="modal-footer">Don't have an account? <a href="#" id="signupLink">Sign Up</a></p>
+            </form>
+            <!-- Signup Form (hidden by default) -->
+            <form id="signupForm" class="hidden">
+                <div class="form-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="form-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email address" required>
+                </div>
+                <div class="form-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Create Password" required>
+                </div>
+                <button type="submit" class="btn-glow full-w">Create Account</button>
+                <p class="modal-footer">Already have an account? <a href="#" id="loginLink">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <!-- ═══════════ HERO ═══════════ -->
+        <section id="home" class="hero">
+            <div class="hero-bg-effects">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+                <div class="grid-lines"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge">🔬 AI-Powered Detection System</div>
+                <h1>Ensuring Every<br><span class="gradient-text">Drop is Pure</span></h1>
+                <p class="hero-desc">Advanced machine learning algorithms analyze milk samples in real-time, detecting 7 types of adulterants with 99%+ accuracy. Protecting health, one test at a time.</p>
+                <div class="hero-buttons">
+                    <a href="#detect" class="btn-glow"><i class="fas fa-microscope"></i> Start Detection</a>
+                    <a href="#about" class="btn-outline"><i class="fas fa-play-circle"></i> Learn More</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="h-stat">
+                        <span class="h-stat-num" data-target="99">0</span><span class="h-stat-suffix">%</span>
+                        <span class="h-stat-label">Accuracy</span>
+                    </div>
+                    <div class="h-stat-divider"></div>
+                    <div class="h-stat">
+                        <span class="h-stat-num" data-target="7">0</span><span class="h-stat-suffix">+</span>
+                        <span class="h-stat-label">Adulterants</span>
+                    </div>
+                    <div class="h-stat-divider"></div>
+                    <div class="h-stat">
+                        <span class="h-stat-num" data-target="5000">0</span><span class="h-stat-suffix"></span>
+                        <span class="h-stat-label">Samples Trained</span>
+                    </div>
+                    <div class="h-stat-divider"></div>
+                    <div class="h-stat">
+                        <span class="h-stat-num" data-target="2">0</span><span class="h-stat-suffix">s</span>
+                        <span class="h-stat-label">Detection Time</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="molecule-container">
+                    <div class="molecule-ring ring-1"></div>
+                    <div class="molecule-ring ring-2"></div>
+                    <div class="molecule-ring ring-3"></div>
+                    <div class="molecule-core">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FEATURES STRIP ═══════════ -->
+        <section class="features-strip">
+            <div class="strip-scroll">
+                <div class="strip-item"><i class="fas fa-shield-alt"></i> Food Safety</div>
+                <div class="strip-item"><i class="fas fa-brain"></i> Machine Learning</div>
+                <div class="strip-item"><i class="fas fa-chart-line"></i> Real-time Analytics</div>
+                <div class="strip-item"><i class="fas fa-microchip"></i> IoT Ready</div>
+                <div class="strip-item"><i class="fas fa-cloud"></i> Cloud Processing</div>
+                <div class="strip-item"><i class="fas fa-mobile-alt"></i> Mobile Responsive</div>
+                <div class="strip-item"><i class="fas fa-lock"></i> Secure</div>
+                <div class="strip-item"><i class="fas fa-shield-alt"></i> Food Safety</div>
+                <div class="strip-item"><i class="fas fa-brain"></i> Machine Learning</div>
+                <div class="strip-item"><i class="fas fa-chart-line"></i> Real-time Analytics</div>
+            </div>
+        </section>
+
+        <!-- ═══════════ DETECTION SECTION ═══════════ -->
+        <section id="detect" class="section detect-section">
+            <div class="section-header">
+                <span class="section-tag">🧪 AI Detection Engine</span>
+                <h2>Milk Quality <span class="gradient-text">Analysis</span></h2>
+                <p>Enter milk sample parameters manually or simulate IoT sensor readings for instant AI-powered analysis.</p>
+            </div>
+
+            <div class="detect-grid">
+                <!-- Input Panel -->
+                <div class="glass-card input-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-sliders-h"></i> Sample Parameters</h3>
+                        <button class="chip-btn" id="randomizeBtn"><i class="fas fa-random"></i> Simulate</button>
+                    </div>
+                    <form id="detectForm">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>pH Level</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-vial"></i>
+                                    <input type="number" id="ph" step="0.1" value="6.6" min="0" max="14" required>
+                                </div>
+                                <span class="input-range">Normal: 6.4 – 6.8</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Lactometer Reading</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <input type="number" id="lactometer" step="0.1" value="29.0" min="0" max="50" required>
+                                </div>
+                                <span class="input-range">Normal: 28 – 32</span>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>Fat Percentage</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-percentage"></i>
+                                    <input type="number" id="fat" step="0.1" value="4.5" min="0" max="15" required>
+                                </div>
+                                <span class="input-range">Normal: 3.5 – 6.5</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Density (g/cm³)</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-weight-hanging"></i>
+                                    <input type="number" id="density" step="0.001" value="1.030" min="0.9" max="1.1" required>
+                                </div>
+                                <span class="input-range">Normal: 1.028 – 1.032</span>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>Conductivity (mS/cm)</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-bolt"></i>
+                                    <input type="number" id="conductivity" step="0.1" value="5.0" min="0" max="25" required>
+                                </div>
+                                <span class="input-range">Normal: 4.5 – 5.5</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Temperature (°C)</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    <input type="number" id="temp" step="0.1" value="22.0" min="0" max="50" required>
+                                </div>
+                                <span class="input-range">Normal: 20 – 25</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-glow full-w" id="analyzeBtn">
+                            <i class="fas fa-atom"></i> Analyze Sample
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Result Panel -->
+                <div class="glass-card result-card" id="resultCard">
+                    <!-- Placeholder State -->
+                    <div class="result-state placeholder-state" id="placeholderState">
+                        <div class="placeholder-icon">
+                            <div class="scan-ring"></div>
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h3>Ready to Analyze</h3>
+                        <p>Enter parameters or click "Simulate" to generate test data, then hit "Analyze Sample".</p>
+                    </div>
+                    <!-- Loading State -->
+                    <div class="result-state loading-state hidden" id="loadingState">
+                        <div class="dna-loader">
+                            <div class="dna-dot"></div>
+                            <div class="dna-dot"></div>
+                            <div class="dna-dot"></div>
+                            <div class="dna-dot"></div>
+                            <div class="dna-dot"></div>
+                        </div>
+                        <h3>Processing...</h3>
+                        <p>AI model is analyzing the sample parameters.</p>
+                    </div>
+                    <!-- Result State -->
+                    <div class="result-state result-ready hidden" id="resultState">
+                        <div class="result-top">
+                            <div class="gauge-wrapper">
+                                <svg class="gauge-svg" viewBox="0 0 120 120">
+                                    <circle class="gauge-bg" cx="60" cy="60" r="52"></circle>
+                                    <circle class="gauge-fill" cx="60" cy="60" r="52" id="gaugeFill"></circle>
+                                </svg>
+                                <div class="gauge-center">
+                                    <span class="gauge-val" id="purityVal">0</span><span class="gauge-pct">%</span>
+                                    <span class="gauge-label">Purity</span>
+                                </div>
+                            </div>
+                            <div class="result-meta">
+                                <div class="status-pill" id="statusPill">Safe</div>
+                                <div class="result-info-grid">
+                                    <div class="info-cell">
+                                        <span class="info-label">Adulterant</span>
+                                        <span class="info-value" id="resAdulterant">-</span>
+                                    </div>
+                                    <div class="info-cell">
+                                        <span class="info-label">Risk Level</span>
+                                        <span class="info-value" id="resRisk">-</span>
+                                    </div>
+                                    <div class="info-cell">
+                                        <span class="info-label">AI Confidence</span>
+                                        <span class="info-value" id="resConfidence">-</span>
+                                    </div>
+                                    <div class="info-cell">
+                                        <span class="info-label">Timestamp</span>
+                                        <span class="info-value" id="resTimestamp">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <button class="action-btn" id="downloadPdf"><i class="fas fa-file-pdf"></i> Download PDF</button>
+                            <button class="action-btn" id="voiceBtn"><i class="fas fa-volume-up"></i> Voice Result</button>
+                            <button class="action-btn" id="newTestBtn"><i class="fas fa-redo"></i> New Test</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ LIVE DASHBOARD ═══════════ -->
+        <section id="dashboard" class="section dashboard-section">
+            <div class="section-header">
+                <span class="section-tag">📡 IoT Simulation</span>
+                <h2>Real-time Sensor <span class="gradient-text">Dashboard</span></h2>
+                <p>Simulated live sensor data stream showing pH, conductivity, and density fluctuations.</p>
+            </div>
+            <div class="dashboard-grid">
+                <div class="glass-card sensor-card">
+                    <div class="sensor-header">
+                        <span class="sensor-name"><i class="fas fa-vial"></i> pH Level</span>
+                        <span class="sensor-live" id="phLive">6.60</span>
+                    </div>
+                    <canvas id="phChart"></canvas>
+                </div>
+                <div class="glass-card sensor-card">
+                    <div class="sensor-header">
+                        <span class="sensor-name"><i class="fas fa-bolt"></i> Conductivity</span>
+                        <span class="sensor-live" id="condLive">5.00</span>
+                    </div>
+                    <canvas id="condChart"></canvas>
+                </div>
+                <div class="glass-card sensor-card">
+                    <div class="sensor-header">
+                        <span class="sensor-name"><i class="fas fa-weight-hanging"></i> Density</span>
+                        <span class="sensor-live" id="densLive">1.030</span>
+                    </div>
+                    <canvas id="densChart"></canvas>
+                </div>
+            </div>
+            <!-- Test History -->
+            <div class="glass-card history-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Recent Test History</h3>
+                    <button class="chip-btn" id="clearHistory"><i class="fas fa-trash-alt"></i> Clear</button>
+                </div>
+                <div class="history-table-wrap">
+                    <table class="history-table" id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Adulterant</th>
+                                <th>Purity</th>
+                                <th>Risk</th>
+                                <th>Confidence</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <tr class="empty-row"><td colspan="6">No tests performed yet. Run your first analysis above!</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ ANALYTICS ═══════════ -->
+        <section id="analytics" class="section analytics-section">
+            <div class="section-header">
+                <span class="section-tag">📊 Data Insights</span>
+                <h2>Market <span class="gradient-text">Analytics</span></h2>
+                <p>Aggregated intelligence from 5,000+ tested samples across all adulterant categories.</p>
+            </div>
+            <div class="analytics-grid">
+                <div class="glass-card">
+                    <h3><i class="fas fa-chart-bar"></i> Adulteration Distribution</h3>
+                    <canvas id="distChart"></canvas>
+                </div>
+                <div class="glass-card">
+                    <h3><i class="fas fa-chart-pie"></i> Sample Composition</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="glass-card chart-wide">
+                    <h3><i class="fas fa-project-diagram"></i> Parameter Comparison by Adulterant</h3>
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ ABOUT ═══════════ -->
+        <section id="about" class="section about-section">
+            <div class="section-header">
+                <span class="section-tag">💡 Our Mission</span>
+                <h2>About the <span class="gradient-text">Project</span></h2>
+                <p>A final-year engineering project combining IoT, ML, and modern web technologies.</p>
+            </div>
+            <div class="about-grid">
+                <div class="glass-card about-main">
+                    <h3>Why MilkPure AI?</h3>
+                    <p>Milk adulteration is a critical health hazard affecting millions globally. Common adulterants like water, urea, detergent, and synthetic compounds can cause serious health issues including kidney failure, cancer, and digestive disorders.</p>
+                    <p>MilkPure AI uses a <strong>Random Forest Classifier</strong> trained on 5,000+ synthetic milk samples to detect 7 types of adulterants in under 2 seconds. The system analyzes parameters like pH, lactometer reading, fat percentage, density, conductivity, and temperature to deliver predictions with 99%+ accuracy.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+                <div class="features-col">
+                    <div class="glass-card feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div>
+                            <h4>Consumer Safety</h4>
+                            <p>Protects millions from toxic synthetic milk and harmful chemical additives.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card feature-card">
+                        <div class="feature-icon"><i class="fas fa-satellite-dish"></i></div>
+                        <div>
+                            <h4>IoT Integration</h4>
+                            <p>Architecture ready to connect with physical pH, conductivity, and density sensors.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card feature-card">
+                        <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+                        <div>
+                            <h4>PDF Reports</h4>
+                            <p>Generate downloadable test reports with all parameters and AI analysis results.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card feature-card">
+                        <div class="feature-icon"><i class="fas fa-assistive-listening-systems"></i></div>
+                        <div>
+                            <h4>Voice Assistant</h4>
+                            <p>Hear results announced using the Web Speech API for accessibility.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ CONTACT ═══════════ -->
+        <section id="contact" class="section contact-section">
+            <div class="section-header">
+                <span class="section-tag">📩 Get In Touch</span>
+                <h2>Contact <span class="gradient-text">Support</span></h2>
+                <p>Have questions or feedback? We'd love to hear from you.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="glass-card contact-form-card">
+                    <form id="contactForm">
+                        <div class="form-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-field">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-field">
+                            <i class="fas fa-tag"></i>
+                            <select>
+                                <option>General Inquiry</option>
+                                <option>Technical Support</option>
+                                <option>Feature Request</option>
+                                <option>Bug Report</option>
+                            </select>
+                        </div>
+                        <div class="form-field textarea-field">
+                            <i class="fas fa-comment-dots"></i>
+                            <textarea placeholder="Your message..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-glow full-w"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info-col">
+                    <div class="glass-card contact-info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Location</h4>
+                        <p>Engineering College Campus, India</p>
+                    </div>
+                    <div class="glass-card contact-info-card">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <h4>Email</h4>
+                        <p>support@milkpure-ai.com</p>
+                    </div>
+                    <div class="glass-card contact-info-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h4>Phone</h4>
+                        <p>+91 98765 43210</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-flask"></i></div>
+                    <span>MilkPure<span class="logo-ai">AI</span></span>
+                </div>
+                <p>AI-powered milk quality detection system built for consumer safety and food security.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#detect">Detection</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Technology</h4>
+                <a href="#">Python / Flask</a>
+                <a href="#">Scikit-learn</a>
+                <a href="#">Chart.js</a>
+                <a href="#">Web Speech API</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MilkPure AI — Milk Adulteration Detection System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Success!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

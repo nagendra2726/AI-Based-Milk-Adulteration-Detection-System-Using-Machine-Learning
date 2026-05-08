@@ -1,0 +1,10 @@
+flask
+flask-cors
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+plotly
+jinja2
+pickle5;python_version<'3.8'
