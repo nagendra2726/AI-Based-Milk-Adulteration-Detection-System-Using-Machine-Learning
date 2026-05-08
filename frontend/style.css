@@ -223,14 +223,46 @@ input[type="range"] { width: 100%; cursor: pointer; accent-color: var(--primary)
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* 📱 Responsive */
-@media (max-width: 1100px) {
+.hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 5px; }
+.hamburger span { display: block; width: 28px; height: 3px; background: var(--text-main); border-radius: 2px; transition: 0.3s; }
+
+@media (max-width: 992px) {
+    .hamburger { display: flex; }
+    .nav-links {
+        position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px);
+        background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(20px);
+        flex-direction: column; align-items: center; justify-content: center;
+        transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        gap: 3rem;
+    }
+    .nav-links.active { left: 0; }
+    .nav-link { font-size: 1.5rem; }
+    
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    .hero h1 { font-size: 3.5rem; }
+}
+
+@media (max-width: 768px) {
     .detect-grid, .dashboard-grid, .analytics-grid { grid-template-columns: 1fr; }
     .chart-wide { grid-column: span 1; }
-    .section-header h2 { font-size: 3rem; }
-    .hero { flex-direction: column; text-align: center; padding-top: 100px; }
+    .section-header h2 { font-size: 2.5rem; }
+    .hero { flex-direction: column; text-align: center; padding-top: 120px; gap: 3rem; }
     .hero-content { max-width: 100%; }
-    .hero-buttons { justify-content: center; }
-    .hero-stats { justify-content: center; flex-wrap: wrap; }
+    .hero-buttons { justify-content: center; flex-direction: column; }
+    .hero-stats { justify-content: center; gap: 1.5rem; }
+    .h-stat-divider { display: none; }
+    .hero-visual { flex: none; width: 100%; height: 300px; }
+    .molecule-container { width: 300px; height: 300px; margin: 0 auto; }
+}
+
+@media (max-width: 480px) {
+    .section-header h2 { font-size: 2rem; }
+    .glass-card { padding: 1.5rem; }
+    .nav-actions .login-btn span { display: none; }
+    .nav-actions .login-btn { padding: 10px; width: 44px; }
 }
 
 .hidden { display: none !important; }
