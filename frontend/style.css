@@ -1,17 +1,17 @@
 :root {
-    --primary: #00f2ff;
-    --primary-rgb: 0, 242, 255;
-    --primary-glow: rgba(0, 242, 255, 0.4);
-    --bg-dark: #020617;
-    --bg-card: rgba(15, 23, 42, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --text-main: #f8fafc;
+    --primary: #6366f1;
+    --primary-rgb: 99, 102, 241;
+    --primary-glow: rgba(99, 102, 241, 0.4);
+    --bg-dark: #030712;
+    --bg-card: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f1f5f9;
     --text-dim: #94a3b8;
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
     --font-main: 'Outfit', sans-serif;
-    --card-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5);
+    --card-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .light-mode {
@@ -54,7 +54,7 @@ body::before {
 .navbar.scrolled { padding: 0.7rem 5%; background: rgba(2, 6, 23, 0.9); }
 .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; }
-.logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), rgba(0, 242, 255, 0.5)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 0 25px var(--primary-glow); transition: 0.3s; }
+.logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), rgba(99, 102, 241, 0.5)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 0 25px var(--primary-glow); transition: 0.3s; }
 .logo:hover .logo-icon { transform: rotate(10deg) scale(1.1); }
 .logo-ai { font-size: 0.7rem; background: var(--primary); color: #000; padding: 2px 8px; border-radius: 6px; margin-left: 5px; vertical-align: middle; font-weight: 900; }
 
@@ -72,7 +72,7 @@ body::before {
 /* 🧪 Section Header */
 .section { padding: 140px 5% 80px; max-width: 1400px; margin: 0 auto; }
 .section-header { text-align: center; margin-bottom: 5rem; }
-.section-tag { background: rgba(0, 242, 255, 0.1); color: var(--primary); padding: 8px 20px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border: 1px solid var(--primary-glow); display: inline-block; margin-bottom: 1.5rem; letter-spacing: 1px; }
+.section-tag { background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 8px 20px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border: 1px solid var(--primary-glow); display: inline-block; margin-bottom: 1.5rem; letter-spacing: 1px; }
 .section-header h2 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
 .section-header p { color: var(--text-dim); font-size: 1.25rem; max-width: 800px; margin: 0 auto; }
 .gradient-text { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -98,7 +98,7 @@ body::before {
 /* 🕹️ Parameter Sliders */
 .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
 .card-header h3 { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-.chip-btn { background: rgba(0, 242, 255, 0.08); border: 1px solid var(--primary-glow); color: var(--primary); padding: 10px 20px; border-radius: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; transition: 0.3s; }
+.chip-btn { background: rgba(99, 102, 241, 0.08); border: 1px solid var(--primary-glow); color: var(--primary); padding: 10px 20px; border-radius: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; transition: 0.3s; }
 .chip-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 25px var(--primary-glow); }
 
 .slider-group { margin-bottom: 2.2rem; }
@@ -134,7 +134,7 @@ input[type="range"] { width: 100%; cursor: pointer; accent-color: var(--primary)
 
 /* 🔘 Global Buttons */
 .btn-glow { 
-    background: linear-gradient(135deg, var(--primary), rgba(0, 242, 255, 0.8)); 
+    background: linear-gradient(135deg, var(--primary), rgba(99, 102, 241, 0.8)); 
     color: white; 
     border: none; 
     padding: 1rem 2rem; 

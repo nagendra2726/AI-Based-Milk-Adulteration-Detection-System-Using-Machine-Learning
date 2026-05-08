@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/api/analytics').then(r => r.json()).then(stats => {
             new Chart(distCanvas, {
                 type: 'bar',
-                data: { labels: stats.labels, datasets: [{ label: 'Metric', data: stats.counts, backgroundColor: '#00f2ff50', borderColor: '#00f2ff', borderWidth: 2 }] },
+                data: { labels: stats.labels, datasets: [{ label: 'Metric', data: stats.counts, backgroundColor: '#6366f150', borderColor: '#6366f1', borderWidth: 2 }] },
                 options: { responsive: true, plugins: { legend: { display: false } } }
             });
         });
