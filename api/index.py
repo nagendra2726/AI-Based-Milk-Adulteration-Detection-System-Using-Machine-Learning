@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, send_from_directory
 import pickle
 import numpy as np
 import pandas as pd
+from flask_cors import CORS
 import os
 from datetime import datetime
 
@@ -9,6 +10,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend')
 
 app = Flask(__name__)
+CORS(app)
 test_history = []
 
 # Load Industrial Assets

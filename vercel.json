@@ -1,45 +1,51 @@
 {
   "version": 2,
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/index.py"
     },
     {
-      "source": "/style.css",
-      "destination": "/frontend/style.css"
+      "src": "/style.css",
+      "dest": "/frontend/style.css"
     },
     {
-      "source": "/script.js",
-      "destination": "/frontend/script.js"
+      "src": "/script.js",
+      "dest": "/frontend/script.js"
     },
     {
-      "source": "/home",
-      "destination": "/frontend/home.html"
+      "src": "/home",
+      "dest": "/frontend/home.html"
     },
     {
-      "source": "/detect",
-      "destination": "/frontend/detect.html"
+      "src": "/detect",
+      "dest": "/frontend/detect.html"
     },
     {
-      "source": "/dashboard",
-      "destination": "/frontend/dashboard.html"
+      "src": "/dashboard",
+      "dest": "/frontend/dashboard.html"
     },
     {
-      "source": "/analytics",
-      "destination": "/frontend/analytics.html"
+      "src": "/analytics",
+      "dest": "/frontend/analytics.html"
     },
     {
-      "source": "/about",
-      "destination": "/frontend/about.html"
+      "src": "/about",
+      "dest": "/frontend/about.html"
     },
     {
-      "source": "/contact",
-      "destination": "/frontend/contact.html"
+      "src": "/contact",
+      "dest": "/frontend/contact.html"
     },
     {
-      "source": "/",
-      "destination": "/frontend/login.html"
+      "src": "/(.*)",
+      "dest": "api/index.py"
     }
   ]
 }
