@@ -1,9 +1,9 @@
 __pycache__/
 *.pyc
 .DS_Store
-backend/model.pkl
-backend/scaler.pkl
-backend/dataset.csv
+api/model.pkl
+api/scaler.pkl
+api/dataset.csv
 .venv/
 env/
 venv/
