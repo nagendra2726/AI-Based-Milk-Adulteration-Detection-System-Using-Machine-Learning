@@ -12,9 +12,21 @@ app = Flask(__name__)
 test_history = []
 
 # Load Industrial Assets
-with open(os.path.join(BASE_DIR, 'model.pkl'), 'rb') as f:
+MODEL_PATH = os.path.join(BASE_DIR, 'model.pkl')
+SCALER_PATH = os.path.join(BASE_DIR, 'scaler.pkl')
+
+if not os.path.exists(MODEL_PATH) or not os.path.exists(SCALER_PATH):
+    print("Industrial Assets missing. Generating new assets...")
+    try:
+        from api.model import train_industrial_model
+        train_industrial_model()
+    except ImportError:
+        from model import train_industrial_model
+        train_industrial_model()
+
+with open(MODEL_PATH, 'rb') as f:
     model = pickle.load(f)
-with open(os.path.join(BASE_DIR, 'scaler.pkl'), 'rb') as f:
+with open(SCALER_PATH, 'rb') as f:
     scaler = pickle.load(f)
 
 ADULTERANTS = {0: "Pure Milk", 1: "Water Dilution", 2: "Detergent/Chemical", 3: "Urea/Synthetic", 4: "Sugar/Salt"}
