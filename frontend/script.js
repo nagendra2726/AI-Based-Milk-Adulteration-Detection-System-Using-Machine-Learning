@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const setVal = (id, val) => {
                 const el = document.getElementById(id);
                 el.value = val;
-                document.getElementById(id + 'Val').textContent = val;
+                const display = document.getElementById(id + 'Val');
+                if (display) display.textContent = val;
             };
             setVal('ph', (Math.random() * 0.3 + 6.5).toFixed(1));
             setVal('fat', (Math.random() * 2 + 3.5).toFixed(1));
@@ -76,7 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = {
                 temp: document.getElementById('temp')?.value || 25.0
             };
-            sliders.forEach(id => payload[id] = document.getElementById(id).value);
+            sliders.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) payload[id] = el.value;
+            });
 
             try {
                 const response = await fetch('/api/predict', {
@@ -126,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('downloadPdf')?.addEventListener('click', () => {
             showToast("Report Engine initialized. Generating PDF...");
-            // Standard PDF download simulation
             const link = document.createElement('a');
             link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent("INDUSTRIAL MILK QUALITY REPORT\n" + resAdulterant.textContent + "\n" + resRecommendation.textContent);
             link.download = "MilkPure_Report.txt";
@@ -138,15 +141,128 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ═══════════ ANALYTICS ═══════════
+    // ═══════════ HISTORY LOGIC ═══════════
+    const historyBody = document.getElementById('historyBody');
+    if (historyBody) {
+        const fetchHistory = async () => {
+            try {
+                const response = await fetch('/api/history');
+                const history = await response.json();
+                
+                historyBody.innerHTML = history.length ? '' : '<tr><td colspan="5" style="text-align:center; color:var(--text-dim)">No test records found.</td></tr>';
+                
+                history.reverse().forEach(entry => {
+                    const row = document.createElement('tr');
+                    const riskClass = entry.purity > 80 ? 'success' : (entry.purity > 40 ? 'warning' : 'danger');
+                    row.innerHTML = `
+                        <td style="color:var(--${riskClass})">${entry.adulterant}</td>
+                        <td>${entry.purity}%</td>
+                        <td>${entry.risk}</td>
+                        <td>${entry.confidence}%</td>
+                        <td>${entry.timestamp}</td>
+                    `;
+                    historyBody.appendChild(row);
+                });
+            } catch (e) {
+                console.error("History fetch failed", e);
+            }
+        };
+        fetchHistory();
+    }
+
+    // ═══════════ ANALYTICS LOGIC ═══════════
     const distCanvas = document.getElementById('distChart');
     if (distCanvas) {
         fetch('/api/analytics').then(r => r.json()).then(stats => {
+            // 1. Distribution Bar Chart
             new Chart(distCanvas, {
                 type: 'bar',
-                data: { labels: stats.labels, datasets: [{ label: 'Metric', data: stats.counts, backgroundColor: '#6366f150', borderColor: '#6366f1', borderWidth: 2 }] },
-                options: { responsive: true, plugins: { legend: { display: false } } }
+                data: { 
+                    labels: stats.labels, 
+                    datasets: [{ 
+                        label: 'Samples Detected', 
+                        data: stats.counts, 
+                        backgroundColor: ['rgba(98,182,203,0.8)', 'rgba(190,233,232,0.8)', 'rgba(255,255,255,0.8)', 'rgba(27,73,101,0.8)', 'rgba(85,150,165,0.8)'],
+                        borderColor: ['#62B6CB', '#BEE9E8', '#FFFFFF', '#1B4965', '#5596A5'], 
+                        borderWidth: 2 
+                    }] 
+                },
+                options: { 
+                    responsive: true, 
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutBounce'
+                    },
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#BEE9E8' } }, x: { ticks: { color: '#BEE9E8' } } }
+                }
             });
+
+            // 2. Composition Pie Chart
+            const pieCanvas = document.getElementById('pieChart');
+            if (pieCanvas) {
+                new Chart(pieCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: stats.labels,
+                        datasets: [{
+                            data: stats.counts,
+                            backgroundColor: ['#62B6CB', '#BEE9E8', '#FFFFFF', '#1B4965', '#5596A5'],
+                            borderWidth: 2,
+                            borderColor: '#0B1F3B',
+                            hoverOffset: 20
+                        }]
+                    },
+                    options: { 
+                        responsive: true,
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true,
+                            duration: 2000,
+                            easing: 'easeOutElastic'
+                        },
+                        plugins: { legend: { position: 'bottom', labels: { color: '#BEE9E8', font: { family: 'Outfit' } } } }
+                    }
+                });
+            }
+
+            // 3. Parameter Radar Chart
+            const radarCanvas = document.getElementById('radarChart');
+            if (radarCanvas) {
+                new Chart(radarCanvas, {
+                    type: 'radar',
+                    data: {
+                        labels: ['pH', 'Fat Content', 'Density', 'Lactometer', 'Conductivity', 'SNF'],
+                        datasets: [
+                            {
+                                label: 'Pure Milk Avg',
+                                data: [6.6, 4.5, 1.03, 30, 4.8, 8.5],
+                                borderColor: '#62B6CB',
+                                backgroundColor: 'rgba(98, 182, 203, 0.3)',
+                                pointBackgroundColor: '#62B6CB'
+                            },
+                            {
+                                label: 'Adulterated Avg',
+                                data: [7.2, 2.1, 1.02, 22, 8.5, 5.2],
+                                borderColor: '#1B4965',
+                                backgroundColor: 'rgba(27, 73, 101, 0.3)',
+                                pointBackgroundColor: '#1B4965'
+                            }
+                        ]
+                    },
+                    options: {
+                        animation: {
+                            duration: 1800,
+                            easing: 'easeInOutQuart'
+                        },
+                        plugins: { legend: { labels: { color: '#BEE9E8' } } },
+                        scales: { r: { grid: { color: 'rgba(190, 233, 232, 0.1)' }, angleLines: { color: 'rgba(190, 233, 232, 0.1)' }, pointLabels: { color: '#BEE9E8' }, ticks: { display: false } } }
+                    }
+                });
+            }
+        }).catch(err => {
+            console.error("Analytics fetch failed", err);
+            showToast("Failed to load market analytics.", "error");
         });
     }
 
@@ -155,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toastMsg = document.getElementById('toastMsg');
         if (toast && toastMsg) {
             toastMsg.textContent = msg;
-            toast.classList.add('show');
+            toast.className = 'toast ' + (type === 'error' ? 'error' : '') + ' show';
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
     }

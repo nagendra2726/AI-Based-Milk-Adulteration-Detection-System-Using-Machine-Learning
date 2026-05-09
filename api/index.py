@@ -15,7 +15,28 @@ app = Flask(
     template_folder='../frontend'
 )
 CORS(app)
-test_history = []
+test_history = [
+    {
+        "adulterant": "Pure Milk",
+        "status": "Pure Milk",
+        "risk": "Low Risk",
+        "purity": 98.5,
+        "adulteration_pct": 1.5,
+        "confidence": 99.2,
+        "recommendation": "Quality Grade A. Milk is safe for industrial processing and consumption.",
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    },
+    {
+        "adulterant": "Water Dilution",
+        "status": "Moderately Adulterated",
+        "risk": "High Risk",
+        "purity": 45.2,
+        "adulteration_pct": 54.8,
+        "confidence": 88.5,
+        "recommendation": "Significant dilution detected. Check supply chain for illegal water mixing.",
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+]
 
 # Load Industrial Assets
 MODEL_PATH = os.path.join(BASE_DIR, 'model.pkl')
@@ -57,8 +78,8 @@ def login_page(): return send_from_directory(FRONTEND_DIR, 'login.html')
 def home_page(): return send_from_directory(FRONTEND_DIR, 'home.html')
 @app.route('/detect')
 def detect_page(): return send_from_directory(FRONTEND_DIR, 'detect.html')
-@app.route('/dashboard')
-def dashboard_page(): return send_from_directory(FRONTEND_DIR, 'dashboard.html')
+@app.route('/history')
+def history_page(): return send_from_directory(FRONTEND_DIR, 'history.html')
 @app.route('/analytics')
 def analytics_page(): return send_from_directory(FRONTEND_DIR, 'analytics.html')
 @app.route('/about')

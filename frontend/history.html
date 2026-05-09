@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | MilkPure AI</title>
+    <title>History | MilkPure AI</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
             <ul class="nav-links">
                 <li><a href="/home" class="nav-link">Home</a></li>
                 <li><a href="/detect" class="nav-link">Detection</a></li>
-                <li><a href="/dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="/history" class="nav-link active">History</a></li>
                 <li><a href="/analytics" class="nav-link">Analytics</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/contact" class="nav-link">Contact</a></li>
@@ -37,24 +37,9 @@
 
     <main class="section">
         <div class="section-header">
-            <span class="section-tag">📡 Real-time IoT</span>
-            <h2>Sensor <span class="gradient-text">Dashboard</span></h2>
-            <p>Monitor live sensor telemetry and historical test records.</p>
-        </div>
-
-        <div class="dashboard-grid">
-            <div class="glass-card sensor-card">
-                <div class="sensor-header"><span class="sensor-name">pH Level</span><span class="sensor-live" id="phLive">6.6</span></div>
-                <canvas id="phChart"></canvas>
-            </div>
-            <div class="glass-card sensor-card">
-                <div class="sensor-header"><span class="sensor-name">Conductivity</span><span class="sensor-live" id="condLive">5.0</span></div>
-                <canvas id="condChart"></canvas>
-            </div>
-            <div class="glass-card sensor-card">
-                <div class="sensor-header"><span class="sensor-name">Density</span><span class="sensor-live" id="densLive">1.030</span></div>
-                <canvas id="densChart"></canvas>
-            </div>
+            <span class="section-tag">📋 Test Records</span>
+            <h2>Adulteration <span class="gradient-text">History</span></h2>
+            <p>Review comprehensive historical data of all previous milk adulteration scans.</p>
         </div>
 
         <div class="glass-card history-card" style="margin-top: 2rem;">
